@@ -10,7 +10,6 @@ const buttonStop = document.querySelector('button[data-stop]');
 
 buttonStart.addEventListener('click', () => {
     toggleDisableBtn(true);
-    body.style.backgroundColor = getRandomHexColor();
     timerId = setInterval(() => {
         body.style.backgroundColor = getRandomHexColor();
     }, 1000);
