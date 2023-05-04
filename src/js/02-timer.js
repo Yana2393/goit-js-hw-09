@@ -46,13 +46,24 @@ function convertMs(ms) {
 }
 startBtn.disabled = true;
 startBtn.addEventListener('click', () => {
-    setInterval(() => {
+    const intervalPicker = setInterval(() => {
         const today = new Date();
         const ms = selectedDate - today;
         const result = convertMs(ms);
-        days.textContent = result.days;
-        hours.textContent = result.hours;
-        minutes.textContent = result.minutes;
-        seconds.textContent = result.seconds;
+        days.textContent = addLeadingZero(result.days);
+        hours.textContent = addLeadingZero(result.hours);
+        minutes.textContent = addLeadingZero(result.minutes);
+        seconds.textContent = addLeadingZero(result.seconds);
+        if (ms <= 0) {
+            clearInterval(intervalPicker);
+            days.textContent = '00';
+            hours.textContent = '00';
+            minutes.textContent = '00';
+            seconds.textContent = '00';
+        }
     }, 1000)
 });
+
+function addLeadingZero(value) {
+  return value.toString().padStart(2, '0');
+}
